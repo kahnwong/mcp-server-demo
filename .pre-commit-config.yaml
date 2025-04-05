@@ -21,6 +21,7 @@ repos:
       - id: shellcheck
       - id: shfmt
       - id: trufflehog
+  # ----- go -----
   - repo: local
     hooks:
       - id: go-build
@@ -53,3 +54,21 @@ repos:
         entry: bash -c "cd go && golangci-lint run"
         language: system
         types: [go]
+  # ----- rust -----
+  - repo: local
+    hooks:
+      - id: cargo-fmt
+        name: rust-fmt
+        entry: bash -c "cd rust && cargo fmt"
+        language: system
+        types: [rust]
+      - id: cargo-check
+        name: cargo-check
+        entry: bash -c "cd rust && cargo check"
+        language: system
+        types: [rust]
+      - id: cargo-clippy
+        name: cargo-clippy
+        entry: bash -c "cd rust && cargo clippy -- -D warnings"
+        language: system
+        types: [rust]
