@@ -19,7 +19,10 @@ func main() {
 	)
 
 	// tools
+	s.AddTool(handlers.AddTool(), handlers.AddHandler)
 	s.AddTool(handlers.GetHostnameTool(), handlers.GetHostnameHandler)
+	s.AddTool(handlers.GetCpuUtilizationTool(), handlers.GetCpuUtilizationHandler)
+	s.AddTool(handlers.GetMemoryUtilizationTool(), handlers.GetMemoryUtilizationHandler)
 
 	// start server
 	if err := server.ServeStdio(s); err != nil {
