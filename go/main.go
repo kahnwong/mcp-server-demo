@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/kahnwong/mcp-server-demo-go/handlers"
-	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 	"github.com/rs/zerolog/log"
 )
@@ -20,10 +19,7 @@ func main() {
 	)
 
 	// tools
-	getHostname := mcp.NewTool("get_hostname",
-		mcp.WithDescription("Display hostname"),
-	)
-	s.AddTool(getHostname, handlers.GetHostnameHandler)
+	s.AddTool(handlers.GetHostnameTool(), handlers.GetHostnameHandler)
 
 	// start server
 	if err := server.ServeStdio(s); err != nil {

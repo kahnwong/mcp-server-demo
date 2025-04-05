@@ -8,6 +8,11 @@ import (
 	"github.com/shirou/gopsutil/v4/host"
 )
 
+func GetHostnameTool() mcp.Tool {
+	return mcp.NewTool("get_hostname",
+		mcp.WithDescription("Display hostname"),
+	)
+}
 func GetHostnameHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	hostStat, err := host.Info()
 	if err != nil {
