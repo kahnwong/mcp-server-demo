@@ -72,3 +72,16 @@ repos:
         entry: bash -c "cd rust && cargo clippy -- -D warnings"
         language: system
         types: [rust]
+  # ----- python -----
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff-check
+        entry: bash -c "cd python && ruff check --extend-select I,F --fix"
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff-format
+        entry: bash -c "cd python && ruff format"
+        language: system
+        types: [python]
