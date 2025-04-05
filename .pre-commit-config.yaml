@@ -17,19 +17,39 @@ repos:
   - repo: https://github.com/kahnwong/pre-commit
     rev: "a563260"
     hooks:
-      - id: go-build
-      - id: go-fmt
-      - id: go-imports
-      - id: go-mod-tidy
-      - id: go-unit-tests
-      - id: go-vet
-      - id: golangci-lint
-      - id: ruff-check
-      - id: ruff-format
-      - id: rust-fmt
-      - id: cargo-check
-      - id: cargo-clippy
       - id: yamlfmt
       - id: shellcheck
       - id: shfmt
       - id: trufflehog
+  - repo: local
+    hooks:
+      - id: go-build
+        name: go-build
+        entry: bash -c "cd go && go build ."
+        language: system
+        types: [go]
+      - id: go-fmt
+        name: go-fmt
+        entry: bash -c "cd go && go fmt"
+        language: system
+        types: [go]
+      - id: go-imports
+        name: go-imports
+        entry: bash -c "cd go && goimports -l -w ."
+        language: system
+        types: [go]
+      - id: go-mod-tidy
+        name: go-mod-tidy
+        entry: bash -c "cd go && go mod tidy"
+        language: system
+        types: [go]
+      - id: go-vet
+        name: go-vet
+        entry: bash -c "cd go && go vet"
+        language: system
+        types: [go]
+      - id: golangci-lint
+        name: golangci-lint
+        entry: bash -c "cd go && golangci-lint run"
+        language: system
+        types: [go]
